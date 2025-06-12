@@ -156,7 +156,7 @@ Arquivos principais:
 ```txt
 - synchronize: true está ativado apenas em ambiente de desenvolvimento
 - Validações são feitas com DTOs e pipes
-- API segue padrão RESTful
+- API segue padrão REST
 - Banco de dados PostgreSQL via container Docker
 ```
 
