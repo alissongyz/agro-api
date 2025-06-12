@@ -1,0 +1,36 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: agro_postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: agrodb
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - agro-net
+
+  agro_api:
+    build: .
+    container_name: agro_api
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: agrodb
+    depends_on:
+      - postgres
+    ports:
+      - "3000:3000"
+    networks:
+      - agro-net
+
+volumes:
+  pgdata:
+
+networks:
+  agro-net:
